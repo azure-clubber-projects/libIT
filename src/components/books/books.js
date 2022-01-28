@@ -18,10 +18,7 @@ export default function Books(){
         
     }
 
-    React.useEffect(()=>{
-        fetchBooks();
-        console.log(books);
-    }, []);
+    React.useEffect(fetchBooks, []);
 
 
     return(
@@ -36,5 +33,3 @@ export default function Books(){
         </>
     );
 }
-
-{/* books.map(obj => <Book key={obj.id} {...obj} />) */}

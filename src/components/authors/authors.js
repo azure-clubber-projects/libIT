@@ -17,9 +17,7 @@ export default function Authors(){
         setIsLoading(false);
     }
 
-    React.useEffect(()=>{
-        fetchAuthors();
-    }, []);
+    React.useEffect(fetchAuthors, []);
 
     return(
         <div className={classes.listWrapper}>
