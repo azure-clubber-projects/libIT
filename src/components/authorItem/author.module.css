@@ -1,0 +1,6 @@
+.container{
+    justify-content: space-evenly;
+    display: flex;
+    border: purple solid 3px;
+    border-radius: 15px;
+}
