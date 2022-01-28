@@ -1,35 +1,32 @@
 import React from "react"
 import Author from "../authorItem/authorItem";
 import classes from './authors.module.css';
+import AuthorService from '../../API/authorsService'
 
 
-export default function Authors({ authors }){
-    authors = [
-        {
-            id: 1,
-            firstname: 'authF11',
-            middlename: 'authF12',
-            lastname: 'authF13'
-        },
-        {
-            id: 2,
-            firstname: 'authF21',
-            middlename: 'authF22',
-            lastname: 'authF23'
-        },
-        {
-            id: 3,
-            firstname: 'authF31',
-            middlename: 'authF32',
-            lastname: 'authF33'
-        },
-    ]
+export default function Authors(){
+    const [auth, setAuth] = new React.useState([]);
+    const [isLoading,setIsLoading] = new React.useState(false);
+
+
+    async function fetchAuthors() {
+        let authors = await AuthorService.getAll();
+        
+        setIsLoading(true);
+        setAuth(authors);
+        setIsLoading(false);
+    }
+
+    React.useEffect(()=>{
+        fetchAuthors();
+    }, []);
+
     return(
         <div className={classes.listWrapper}>
             <h1 className={classes.listName}>Authors List</h1>
             <div className={classes.container} >
                 {
-                    authors.map(obj => <Author key={obj.id} {...obj}/>)
+                    isLoading ? <h1>Waiting...</h1> : (auth !== null ? auth.map(obj => <Author key={obj.id} {...obj}/>): <h1>No author yet.</h1>)
                 }
             </div>
         </div>
