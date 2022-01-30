@@ -1,5 +1,6 @@
 .container{
     justify-content: space-evenly;
+    align-items: center;
     display: flex;
     border: tomato solid 3px;
     border-radius: 15px;
